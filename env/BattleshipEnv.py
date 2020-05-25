@@ -108,7 +108,8 @@ class BattleshipEnv(gym.Env):
         print('Already Hit')
         reward-=9
 
-
+      if (action%3==0):
+      	driver.save_screenshot("screenshot.png")
 
       last_played = time.time()
       while True:
@@ -123,7 +124,7 @@ class BattleshipEnv(gym.Env):
             reward-=30
             lose = True
             break
-          elif (time.time()-last_played >= 120):
+          elif (time.time()-last_played >= 60):
             print('TIE')
             tie = True
             break
@@ -131,8 +132,7 @@ class BattleshipEnv(gym.Env):
 
       if (win or lose or tie):
         done = True
-      if (action%10==0):
-      	driver.save_screenshot("screenshot.png")
+
       return np.array(final), reward, done, {}
 
 
@@ -183,7 +183,7 @@ class BattleshipEnv(gym.Env):
           if (str(element.get_attribute('class')) == 'battlefield battlefield__rival'):
             break
 
-          elif (time.time()-last_played >= 120):
+          elif (time.time()-last_played >= 60):
             tie = True
             break
 
