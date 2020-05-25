@@ -37,7 +37,7 @@ class BattleshipEnv(gym.Env):
     def __init__(self):
         super(BattleshipEnv, self).__init__()
 
-        self.reward_range = (-100, 100)
+        self.reward_range = (-100, 150)
 
         # Actions of the format Buy x%, Sell x%, Hold, etc.
         self.action_space = spaces.Discrete(100)
@@ -68,13 +68,16 @@ class BattleshipEnv(gym.Env):
 
       element = driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[1]/div[1]/table/tbody/tr['+num2+']/td['+num1+']')
       if (action in yeet):
-        element.click()
+        try: element.click()
+        except: 
+          time.sleep(3)
+          element.click()
 
         time.sleep(1)
 
         if (str(element.get_attribute('class')) != 'battlefield-cell battlefield-cell__miss battlefield-cell__last'):
           print('Hit')
-          reward+=11
+          reward+=21
 
 
 
