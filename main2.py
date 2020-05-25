@@ -10,10 +10,11 @@ from rl.policy import BoltzmannQPolicy
 from rl.memory import SequentialMemory
 
 
+
 ENV_NAME = 'CartPole-v0'
 
 # Get the environment and extract the number of actions.
-env = gym.make(ENV_NAME)
+env = DummyVecEnv([lambda: BattleshipEnv()])
 #env.render()
 
 np.random.seed(123)
