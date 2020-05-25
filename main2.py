@@ -9,6 +9,15 @@ from rl.agents.dqn import DQNAgent
 from rl.policy import BoltzmannQPolicy
 from rl.memory import SequentialMemory
 
+import json
+import datetime as dt
+
+from stable_baselines.common.policies import MlpPolicy
+from stable_baselines.common.vec_env import DummyVecEnv
+from stable_baselines import PPO2
+
+from env.BattleshipEnv import BattleshipEnv
+
 
 
 ENV_NAME = 'CartPole-v0'
